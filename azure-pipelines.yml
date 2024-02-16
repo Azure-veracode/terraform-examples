@@ -29,7 +29,7 @@ steps:
           export VERACODE_API_KEY_ID=9c42b4bd8abf978e9dc1667451778c58
           export VERACODE_API_KEY_SECRET=568e7bd345890259c3e869c8da3d42597b815e6a780c5d72ce76eaf3045a1736d80eb0ced53eb61956b3f0410546b2ac6e681829eaa3c9c621fcd722cee60b14
           curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-          ./veracode scan --type directory --source '$(Build.SourcesDirectory)' --format table 2 >&1 | tee container-scan.txt
+          ./veracode scan --type directory --source '$(Build.SourcesDirectory)' --format table 2 >&1 | tee container-scan.json
 
 # - task: CmdLine@2
 #   inputs:
