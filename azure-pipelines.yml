@@ -18,6 +18,13 @@ steps:
 #       /home/vsts/work/1/s/veracode configure
 #   displayName: 'Veracode cli'
 
+- task: Veracode@3
+  inputs:
+    ConnectionDetailsSelection: 'Credentials'
+    apiId: '$(VERACODE_API_ID)'
+    apiKey: '$(VERACODE_API_KEY)'
+
+
 - task: Bash@3
   displayName: tf Scanner
   inputs:
