@@ -10,15 +10,26 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: |
-      curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-      /home/vsts/work/1/s/veracode configure
-      Veracode_API_ID='$(VERACODE_API_ID)'
-      Veracode_API_ID='$(VERACODE_API_KEY)'
-      /home/vsts/work/1/s/veracode configure
-  displayName: 'Veracode cli'
+# - script: |
+#       curl -fsS https://tools.veracode.com/veracode-cli/install | sh
+#       /home/vsts/work/1/s/veracode configure
+#       Veracode_API_ID='$(VERACODE_API_ID)'
+#       Veracode_API_ID='$(VERACODE_API_KEY)'
+#       /home/vsts/work/1/s/veracode configure
+#   displayName: 'Veracode cli'
 
-- task: CmdLine@2
+- task: Bash@3
+  displayName: tf Scanner
   inputs:
-    script: './veracode scan --type directory --source ./terraform-examples/ --format table'
-  displayName: 'Scan'
+      targetType: inline
+      script: |
+          pwd
+          export VERACODE_API_KEY_ID=${env:VERACODE_API_ID}
+          export VERACODE_API_KEY_SECRET=${env:VERACODE_API_KEY}
+          curl -fsS https://tools.veracode.com/veracode-cli/install | sh
+          ./veracode scan --type directory --source ./terraform-examples/ --format table
+
+# - task: CmdLine@2
+#   inputs:
+#     script: './veracode scan --type directory --source ./terraform-examples/ --format table'
+#   displayName: 'Scan'
