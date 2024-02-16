@@ -11,10 +11,10 @@ pool:
 
 steps:
 - script: |
+      curl -fsS https://tools.veracode.com/veracode-cli/install | sh
       veracode configure
       Veracode_API_ID='$(VERACODE_API_ID)'
       Veracode_API_ID='$(VERACODE_API_KEY)'
-      curl -fsS https://tools.veracode.com/veracode-cli/install | sh
   displayName: 'Veracode cli'
 
 - task: CmdLine@2
