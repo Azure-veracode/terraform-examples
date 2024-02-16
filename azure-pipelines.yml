@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: |
-      pwd
+      veracode configure
       Veracode_API_ID='$(VERACODE_API_ID)'
       Veracode_API_ID='$(VERACODE_API_KEY)'
       curl -fsS https://tools.veracode.com/veracode-cli/install | sh
